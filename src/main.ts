@@ -44,7 +44,7 @@ async function run(): Promise<void> {
       sha,
       repoUrl,
       timestamp,
-      getFacts()
+      await getFacts()
     )
 
     console.log(messageCard)
