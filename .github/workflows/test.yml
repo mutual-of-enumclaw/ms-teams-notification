@@ -15,6 +15,15 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: 16
+    - name: 'Create .npmrc'
+      shell: bash
+      run: |
+          echo "Creating/Updating .npmrc in $PWD"
+          # Create a new .npmrc if there isn't one there already
+          [ ! -e .npmrc ] && echo "registry=https://moetech.jfrog.io/artifactory/api/npm/nucleus-npm/" > ~/.npmrc
+          [ -e .npmrc ] && cp .npmrc ~/.npmrc && echo "" >> ~/.npmrc
+          echo "_authToken = ${{ secrets.JFROG_AUTH_TOKEN }}" >> ~/.npmrc
+          echo "always-auth = true" >> ~/.npmrc
     - uses: actions/checkout@v3
     - run: |
         npm ci
