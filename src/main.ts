@@ -2,17 +2,8 @@ import * as core from '@actions/core'
 import {Octokit} from '@octokit/rest'
 import axios from 'axios'
 import moment from 'moment-timezone'
+import {getFacts} from './facts'
 import {createMessageCard} from './message-card'
-
-const escapeMarkdownTokens = (text: string) =>
-  text
-    .replace(/\n\ {1,}/g, '\n ')
-    .replace(/\_/g, '\\_')
-    .replace(/\*/g, '\\*')
-    .replace(/\|/g, '\\|')
-    .replace(/#/g, '\\#')
-    .replace(/-/g, '\\-')
-    .replace(/>/g, '\\>')
 
 async function run(): Promise<void> {
   try {
@@ -52,7 +43,8 @@ async function run(): Promise<void> {
       repoName,
       sha,
       repoUrl,
-      timestamp
+      timestamp,
+      getFacts()
     )
 
     console.log(messageCard)
@@ -66,7 +58,7 @@ async function run(): Promise<void> {
       .catch(function(error) {
         core.debug(error)
       })
-  } catch (error) {
+  } catch (error: any) {
     console.log(error)
     core.setFailed(error.message)
   }

@@ -27,8 +27,10 @@
     "@octokit/graphql": "^4.5.8",
     "@octokit/rest": "^17.11.2",
     "axios": "^0.19.2",
+    "moment": "^2.29.4",
     "moment-timezone": "^0.5.32",
-    "octokit": "^1.0.0-hello-world"
+    "octokit": "^1.0.0-hello-world",
+    "yaml": "^2.2.1"
   },
   "devDependencies": {
     "@types/jest": "^24.9.1",

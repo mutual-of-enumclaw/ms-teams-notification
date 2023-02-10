@@ -40,6 +40,9 @@ jobs:
         notification-summary: Deployment Started 
         notification-color: 17a2b8
         timezone: America/Los_Angeles 
+        custom-facts: |
+          - name: Environment
+            value: 'foo'
     - uses: ./
       with: 
         github-token: ${{ github.token }}
@@ -61,10 +64,3 @@ jobs:
         notification-summary: Whew! Everything is right with the world again! 
         notification-color: 28a745 
         timezone: America/Los_Angeles 
-    - uses: ./
-      with: 
-        github-token: ${{ github.token }}
-        ms-teams-webhook-uri: ${{ secrets.MS_TEAMS_WEBHOOK_URI }}
-        notification-summary: "Emojify! &#x1F6A2​​ &#x2705;"
-        notification-color: 28a745 
-        timezone: America/Denver 
