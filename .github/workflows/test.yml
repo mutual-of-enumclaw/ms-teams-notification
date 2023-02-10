@@ -11,6 +11,8 @@ jobs:
   build: # make sure build/ci work properly
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout
+      uses: actions/checkout@v3
     - name: set node version
       uses: actions/setup-node@v3
       with:
@@ -24,7 +26,6 @@ jobs:
           [ -e .npmrc ] && cp .npmrc ~/.npmrc && echo "" >> ~/.npmrc
           echo "_authToken = ${{ secrets.JFROG_AUTH_TOKEN }}" >> ~/.npmrc
           echo "always-auth = true" >> ~/.npmrc
-    - uses: actions/checkout@v3
     - run: |
         npm ci
         npm run all
